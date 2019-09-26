@@ -32,23 +32,23 @@ import javax.validation.Validator;
  */
 @WebServlet(name = "CustomerController", urlPatterns = {"/customer"})
 public class CustomerController extends HttpServlet {
-    
 
     private static final Logger LOG = Logger.getLogger(CustomerController.class.getName());
 
-    @Resource(lookup="jdbc/itmd4515DS")
+    @Resource(lookup = "jdbc/itmd4515DS")
     DataSource ds;
-    
+
     @Resource
     Validator validator;
 
     public static Connection getConnection() throws SQLException {
         String jdbcUrl = "jdbc:mysql://localhost:3306/world?zeroDateTimeBehavior=convertToNull";
         String username = "itmd4515";
-        String password = "itmd4515";
+        String pass = "itmd4515";
 
-        return DriverManager.getConnection(jdbcUrl, username, password);
+        return DriverManager.getConnection(jdbcUrl, username, pass);
     }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -98,7 +98,7 @@ public class CustomerController extends HttpServlet {
         String cusFName = request.getParameter("fName");
         String cusLName = request.getParameter("lName");
         String ageParam = request.getParameter("age");
-        String cusMail= request.getParameter("mail");
+        String cusMail = request.getParameter("mail");
         Integer cusAge = null;
         LOG.info("you have passed a First Name of " + cusFName);
         LOG.info("you have passed a Last Name of " + cusLName);
@@ -108,16 +108,15 @@ public class CustomerController extends HttpServlet {
         }
         LOG.info("you have passed a Mail: " + cusMail);
 
-
-            Customer customer = new Customer(cusFName, cusLName, cusAge,cusMail);
+        Customer customer = new Customer(cusFName, cusLName, cusAge, cusMail);
         LOG.info("My POJO " + customer.toString());
 
         //Set<ConstraintViolation<Customer>> constraintViolations1 = validator.validate(customer);
         //int a= constraintViolations1.size();
         //String name=Integer.toString(a);
-       // LOG.info("size of  Contraint Vioaltion is "+name);
+        // LOG.info("size of  Contraint Vioaltion is "+name);
         Set<ConstraintViolation<Customer>> contraintViolations = validator.validate(customer);
-        if (contraintViolations.size() >0) {
+        if (contraintViolations.size() > 0) {
             LOG.info("Problem occured during Validting POJO");
             for (ConstraintViolation<Customer> bad : contraintViolations) {
                 LOG.info(bad.getPropertyPath() + " " + bad.getMessage());
@@ -128,26 +127,24 @@ public class CustomerController extends HttpServlet {
             dispatcher.forward(request, response);
 
         } else {
-            try(Connection c= ds.getConnection();
-                PreparedStatement ps = c.prepareStatement("insert into customers " + "(fname,lname,age,mail)" + "VALUES(?,?,?,?)");) {
-                
-        ps.setString(1, customer.getfName());
-        ps.setString(2, customer.getlName());
-        ps.setInt(3, customer.getAge());
-        ps.setString(4, customer.getMail());
-        ps.executeUpdate();
+            try (Connection c = ds.getConnection();
+                    PreparedStatement ps = c.prepareStatement("insert into customers " + "(fname,lname,age,mail)" + "VALUES(?,?,?,?)");) {
+
+                ps.setString(1, customer.getfName());
+                ps.setString(2, customer.getlName());
+                ps.setInt(3, customer.getAge());
+                ps.setString(4, customer.getMail());
+                ps.executeUpdate();
             } catch (SQLException ex) {
                 LOG.log(Level.SEVERE, null, ex);
             }
-            
-            
-            
+
             LOG.info("We dont have any issues with Validting POJO. You may proceed");
             request.setAttribute("customer", customer);
-        RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/customerconfirm.jsp");
-        dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/customerconfirm.jsp");
+            dispatcher.forward(request, response);
         }
-        
+
     }
 
     /**

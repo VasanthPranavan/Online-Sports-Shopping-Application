@@ -10,37 +10,37 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Halo Sports Online Store</title>
+        <title>Spark Sports Online Store</title>
     </head>
     <body>
-        <h1>New Customers here!</h1>
+        <h1>Welcome to Spark Sports Online Store </h1>
+        <h2>New Customers here!</h2>
 
         <c:if test="${not empty requestScope.mistakes}">
             <c:forEach items="${requestScope.mistakes}" var="mistake">
-                    <p>There is a validation issue with ${mistake.propertyPath}.  The message is ${mistake.message}</p>
-                </c:forEach>
-            </c:if>
+                <p>There is a validation issue with ${mistake.propertyPath}.  The message is ${mistake.message}</p>
+            </c:forEach>
+        </c:if>
 
-            <form action="/vselvam1-fp/customer" method="post">
-                <div>
-                    <label for="fName">First Name:</label>
-                    <input value="${requestScope.customer.fName}"type="text" id="fName" name="fName">
-                </div>
-                <div>
-                    <label for="lName">Last Name</label>
-                    <input value="${requestScope.customer.lName}" type="text" id="lName" name="lName">
-                </div>
-                <div>
-                    <label for="age">Age</label>
-                    <input value="${requestScope.customer.age}" type="text" id="age" name="age">
-                </div>
-                <div>
-                    <label for="mail">Email ID</label>
-                    <input value="${requestScope.customer.mail}" type="text" id="mail" name="mail">
-                </div> 
-                <div class="button">
-                    <button type="submit">New Customer</button>
-                </div>
-            </form>
+        <form style="margin:0 auto;width:75%;text-align:left" action="/vselvam1-fp/customer" method="post">
+            <div>
+                <label for="fName">First Name</label></br>
+
+                <input value="${requestScope.customer.fName}"type="text" id="fName" name="fName"></br>
+
+                <label for="lName">Last Name</label></br>
+                <input value="${requestScope.customer.lName}" type="text" id="lName" name="lName"></br>
+
+                <label  for="age">Customer Age</label></br>
+                <input value="${requestScope.customer.age}" type="text" id="age" name="age"></br>
+
+                <label for="mail">Email ID</label></br>
+                <input value="${requestScope.customer.mail}" type="text" id="mail" name="mail">
+            </div> 
+            </br>
+            <div class="button">
+                <button type="submit">New Customer</button>
+            </div>
+        </form>
     </body>
 </html>

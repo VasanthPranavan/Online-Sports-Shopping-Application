@@ -7,7 +7,13 @@ package edu.iit.sat.itmd4515.vselvam1.web;
 
 import edu.iit.sat.itmd4515.vselvam1.domain.Customer;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -16,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
@@ -25,12 +32,23 @@ import javax.validation.Validator;
  */
 @WebServlet(name = "CustomerController", urlPatterns = {"/customer"})
 public class CustomerController extends HttpServlet {
+    
 
     private static final Logger LOG = Logger.getLogger(CustomerController.class.getName());
 
+    @Resource(lookup="jdbc/itmd4515DS")
+    DataSource ds;
+    
     @Resource
     Validator validator;
 
+    public static Connection getConnection() throws SQLException {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/world?zeroDateTimeBehavior=convertToNull";
+        String username = "itmd4515";
+        String password = "itmd4515";
+
+        return DriverManager.getConnection(jdbcUrl, username, password);
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -110,6 +128,20 @@ public class CustomerController extends HttpServlet {
             dispatcher.forward(request, response);
 
         } else {
+            try(Connection c= ds.getConnection();
+                PreparedStatement ps = c.prepareStatement("insert into customers " + "(fname,lname,age,mail)" + "VALUES(?,?,?,?)");) {
+                
+        ps.setString(1, customer.getfName());
+        ps.setString(2, customer.getlName());
+        ps.setInt(3, customer.getAge());
+        ps.setString(4, customer.getMail());
+        ps.executeUpdate();
+            } catch (SQLException ex) {
+                LOG.log(Level.SEVERE, null, ex);
+            }
+            
+            
+            
             LOG.info("We dont have any issues with Validting POJO. You may proceed");
             request.setAttribute("customer", customer);
         RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/customerconfirm.jsp");

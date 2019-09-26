@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insurance</title>
+        <title>Halo Sports Online Store</title>
     </head>
     <body>
         <h1>New Customers here!</h1>
@@ -33,7 +33,11 @@
                 <div>
                     <label for="age">Age</label>
                     <input value="${requestScope.customer.age}" type="text" id="age" name="age">
-                </div>  
+                </div>
+                <div>
+                    <label for="mail">Email ID</label>
+                    <input value="${requestScope.customer.mail}" type="text" id="mail" name="mail">
+                </div> 
                 <div class="button">
                     <button type="submit">New Customer</button>
                 </div>

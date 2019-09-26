@@ -7,12 +7,7 @@ package edu.iit.sat.itmd4515.vselvam1.web;
 
 import edu.iit.sat.itmd4515.vselvam1.domain.Customer;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -85,15 +80,18 @@ public class CustomerController extends HttpServlet {
         String cusFName = request.getParameter("fName");
         String cusLName = request.getParameter("lName");
         String ageParam = request.getParameter("age");
+        String cusMail= request.getParameter("mail");
         Integer cusAge = null;
-        LOG.info("you have passed a First anme of " + cusFName);
+        LOG.info("you have passed a First Name of " + cusFName);
         LOG.info("you have passed a Last Name of " + cusLName);
         if (ageParam != null & !(ageParam.isEmpty())) {
             cusAge = Integer.parseInt(request.getParameter("age"));
             LOG.info("you have passed age of " + cusAge);
         }
+        LOG.info("you have passed a Mail: " + cusMail);
 
-            Customer customer = new Customer(cusFName, cusLName, cusAge);
+
+            Customer customer = new Customer(cusFName, cusLName, cusAge,cusMail);
         LOG.info("My POJO " + customer.toString());
 
         //Set<ConstraintViolation<Customer>> constraintViolations1 = validator.validate(customer);
@@ -113,7 +111,9 @@ public class CustomerController extends HttpServlet {
 
         } else {
             LOG.info("We dont have any issues with Validting POJO. You may proceed");
-
+            request.setAttribute("customer", customer);
+        RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/customerconfirm.jsp");
+        dispatcher.forward(request, response);
         }
         
     }

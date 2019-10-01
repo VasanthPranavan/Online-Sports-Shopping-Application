@@ -13,7 +13,7 @@ import javax.validation.constraints.Positive;
  *
  * @author Vasanth Pranavan
  */
-public class Customer {
+public class CustomerPojo {
 
     @NotBlank(message = "Please enter the First Name")
     private String fName;
@@ -25,10 +25,10 @@ public class Customer {
     @Email(message = "Please enter the vaild email ID(Format: XXXX@yyy.com)")
     private String mail;
 
-    public Customer() {
+    public CustomerPojo() {
     }
 
-    public Customer(String fName, String lName, Integer age, String mail) {
+    public CustomerPojo(String fName, String lName, Integer age, String mail) {
         this.fName = fName;
         this.lName = lName;
         this.age = age;

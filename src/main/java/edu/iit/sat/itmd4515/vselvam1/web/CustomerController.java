@@ -5,7 +5,7 @@
  */
 package edu.iit.sat.itmd4515.vselvam1.web;
 
-import edu.iit.sat.itmd4515.vselvam1.domain.Customer;
+import edu.iit.sat.itmd4515.vselvam1.domain.CustomerPojo;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -75,7 +75,7 @@ public class CustomerController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         LOG.info("inside get");
-        Customer customer = new Customer();
+        CustomerPojo customer = new CustomerPojo();
         request.setAttribute("customer", customer);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/newCustomer.jsp");
         dispatcher.forward(request, response);
@@ -108,17 +108,17 @@ public class CustomerController extends HttpServlet {
         }
         LOG.info("you have passed a Mail: " + cusMail);
 
-        Customer customer = new Customer(cusFName, cusLName, cusAge, cusMail);
+        CustomerPojo customer = new CustomerPojo(cusFName, cusLName, cusAge, cusMail);
         LOG.info("My POJO " + customer.toString());
 
         //Set<ConstraintViolation<Customer>> constraintViolations1 = validator.validate(customer);
         //int a= constraintViolations1.size();
         //String name=Integer.toString(a);
         // LOG.info("size of  Contraint Vioaltion is "+name);
-        Set<ConstraintViolation<Customer>> contraintViolations = validator.validate(customer);
+        Set<ConstraintViolation<CustomerPojo>> contraintViolations = validator.validate(customer);
         if (contraintViolations.size() > 0) {
             LOG.info("Problem occured during Validting POJO");
-            for (ConstraintViolation<Customer> bad : contraintViolations) {
+            for (ConstraintViolation<CustomerPojo> bad : contraintViolations) {
                 LOG.info(bad.getPropertyPath() + " " + bad.getMessage());
             }
             request.setAttribute("customer", customer);

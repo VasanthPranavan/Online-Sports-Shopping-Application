@@ -23,31 +23,13 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Vasanth Pranavan
  */
-public class EquipmentValidationTest {
+public class EquipmentValidationTest extends AbstractValidationTest{
 
-    private static Validator validator;
 
     public EquipmentValidationTest() {
     }
 
-    @BeforeAll
-    public static void setUpClass() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-    }
-
-    @BeforeEach
-    public void setUp() {
-    }
-
-    @AfterEach
-    public void tearDown() {
-    }
-
+    
     //sunny day test case
     @Test
     public void testNameNullFailure() {

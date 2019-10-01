@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.validation.Validator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +23,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Vasanth Pranavan
  */
 public abstract class AbstractJPATest {
+        private static Validator validator;
+
 
     private static EntityManagerFactory emf;
     protected EntityManager em;

@@ -6,42 +6,41 @@
 package edu.iit.sat.itmd4515.vselvam1.domain;
 
 import java.time.LocalDate;
-import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 /**
  *
  * @author Vasanth Pranavan
  */
-@Table(name = "Equipment")
 @Entity
-public class Equipment {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotBlank
-    @Column(length = 512, nullable = false, unique = true)
-    private String name;
+@Table(name = "Equipment")
+@NamedQuery(name = "Equipment.findAll", query = "select e from Equipment e")
+@NamedQuery(name = "Equipment.findByName", query = "select e from Equipment e where e.name= :name")
+public class Equipment extends AbstractNamedEntity {
 
     private String brand;
 
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     private Double price;
 
     private LocalDate currentDate;
 
+    @ManyToMany(mappedBy = "equipments")
+    private List<Order> orders = new ArrayList<>();
+
     public Equipment() {
     }
 
-    public Equipment(String name, String brand, String type, Double price, LocalDate currentDate) {
+    public Equipment(String name, String brand, Type type, Double price, LocalDate currentDate) {
         this.name = name;
         this.brand = brand;
         this.type = type;
@@ -54,27 +53,6 @@ public class Equipment {
      *
      * @return the value of id
      */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @param id new value of id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getBrand() {
         return brand;
     }
@@ -83,11 +61,11 @@ public class Equipment {
         this.brand = brand;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -110,6 +88,14 @@ public class Equipment {
     @Override
     public String toString() {
         return "Equipment{" + "id=" + id + ", name=" + name + ", brand=" + brand + ", type=" + type + ", price=" + price + ", currentDate=" + currentDate + '}';
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
 }

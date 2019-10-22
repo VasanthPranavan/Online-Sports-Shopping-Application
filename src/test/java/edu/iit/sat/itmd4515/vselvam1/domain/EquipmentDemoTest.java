@@ -37,7 +37,7 @@ public class EquipmentDemoTest extends AbstractJPATest {
         EntityTransaction tx = em.getTransaction();
 
         //POJO
-        Equipment equipment = new Equipment("Dubmbells", "Forton", "Weights", 12.0, LocalDate.of(1990, 10, 31));
+        Equipment equipment = new Equipment("Dubmbells", "Forton", Type.WEIGHTS, 12.0, LocalDate.of(1990, 10, 31));
         tx.begin();
         em.persist(equipment);
 

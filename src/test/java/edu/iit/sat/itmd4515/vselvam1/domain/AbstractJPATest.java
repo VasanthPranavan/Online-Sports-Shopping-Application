@@ -23,8 +23,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Vasanth Pranavan
  */
 public abstract class AbstractJPATest {
-        private static Validator validator;
 
+    private static Validator validator;
 
     private static EntityManagerFactory emf;
     protected EntityManager em;
@@ -49,7 +49,7 @@ public abstract class AbstractJPATest {
         tx = em.getTransaction();
 
         //POJO
-        Equipment equipment = new Equipment("Skipping ropes", "Jock", "Flex", 12.0, LocalDate.of(2019, 9, 29));
+        Equipment equipment = new Equipment("Skipping ropes", "Jock", Type.GYMNASTICS, 12.0, LocalDate.of(2019, 9, 29));
         tx.begin();
         em.persist(equipment);
         tx.commit();

@@ -7,15 +7,7 @@ package edu.iit.sat.itmd4515.vselvam1.domain;
 
 import java.time.LocalDate;
 import java.util.Set;
-import javax.persistence.RollbackException;
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,18 +15,16 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Vasanth Pranavan
  */
-public class EquipmentValidationTest extends AbstractValidationTest{
-
+public class EquipmentValidationTest extends AbstractValidationTest {
 
     public EquipmentValidationTest() {
     }
 
-    
     //sunny day test case
     @Test
     public void testNameNullFailure() {
 
-        Equipment badEquipment = new Equipment("", "Jock", "Flex", 12.0, LocalDate.of(2019, 9, 29));
+        Equipment badEquipment = new Equipment("", "Jock", Type.GYMNASTICS, 12.0, LocalDate.of(2019, 9, 29));
         Set<ConstraintViolation<Equipment>> constraintViolations
                 = validator.validate(badEquipment);
 
@@ -50,7 +40,7 @@ public class EquipmentValidationTest extends AbstractValidationTest{
     @Test
     public void testNameNullFailureFail() {
 
-        Equipment badEquipment = new Equipment("", "Jock", "Flex", 12.0, LocalDate.of(2019, 9, 29));
+        Equipment badEquipment = new Equipment("", "Jock", Type.GYMNASTICS, 12.0, LocalDate.of(2019, 9, 29));
         Set<ConstraintViolation<Equipment>> constraintViolations
                 = validator.validate(badEquipment);
 

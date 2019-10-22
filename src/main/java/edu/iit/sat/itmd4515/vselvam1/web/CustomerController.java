@@ -102,7 +102,7 @@ public class CustomerController extends HttpServlet {
         Integer cusAge = null;
         LOG.info("you have passed a First Name of " + cusFName);
         LOG.info("you have passed a Last Name of " + cusLName);
-        if (ageParam != null & !(ageParam.isEmpty())) {
+        if (ageParam != null && !(ageParam.isEmpty())) {
             cusAge = Integer.parseInt(request.getParameter("age"));
             LOG.info("you have passed age of " + cusAge);
         }
@@ -111,10 +111,7 @@ public class CustomerController extends HttpServlet {
         CustomerPojo customer = new CustomerPojo(cusFName, cusLName, cusAge, cusMail);
         LOG.info("My POJO " + customer.toString());
 
-        //Set<ConstraintViolation<Customer>> constraintViolations1 = validator.validate(customer);
-        //int a= constraintViolations1.size();
-        //String name=Integer.toString(a);
-        // LOG.info("size of  Contraint Vioaltion is "+name);
+      
         Set<ConstraintViolation<CustomerPojo>> contraintViolations = validator.validate(customer);
         if (contraintViolations.size() > 0) {
             LOG.info("Problem occured during Validting POJO");

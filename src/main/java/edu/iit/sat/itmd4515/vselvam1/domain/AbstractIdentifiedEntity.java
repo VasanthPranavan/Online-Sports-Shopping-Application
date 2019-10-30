@@ -26,11 +26,11 @@ public class AbstractIdentifiedEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     @Version
-    private Long version;
+    protected Long version;
 
-    private LocalDateTime createdDateTime;
+    protected LocalDateTime createdDateTime;
 
-    private LocalDateTime updatedDateTime;
+    protected LocalDateTime updatedDateTime;
 
     public AbstractIdentifiedEntity() {
     }
@@ -75,31 +75,6 @@ public class AbstractIdentifiedEntity {
 
     public void setUpdatedDateTime(LocalDateTime updatedDateTime) {
         this.updatedDateTime = updatedDateTime;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AbstractIdentifiedEntity other = (AbstractIdentifiedEntity) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
     }
 
 }

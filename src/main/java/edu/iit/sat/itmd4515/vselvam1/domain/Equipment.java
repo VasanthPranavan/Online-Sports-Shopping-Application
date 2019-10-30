@@ -34,9 +34,17 @@ public class Equipment extends AbstractNamedEntity {
 
     private LocalDate currentDate;
 
+    
+    
+    
+    //private List<Orders> ord =new ArrayList<>();
+    
     @ManyToMany(mappedBy = "equipments")
-    private List<Order> orders = new ArrayList<>();
+    private List<ItemOrder> orders =new ArrayList<>();
 
+
+    
+    
     public Equipment() {
     }
 
@@ -89,12 +97,16 @@ public class Equipment extends AbstractNamedEntity {
     public String toString() {
         return "Equipment{" + "id=" + id + ", name=" + name + ", brand=" + brand + ", type=" + type + ", price=" + price + ", currentDate=" + currentDate + '}';
     }
-
-    public List<Order> getOrders() {
+//    public List<Orders> getOrder() {
+//        return ord;
+//    }
+//    public void setOrder(List<Orders> order) {
+//        this.ord = order;
+//    }
+    public List<ItemOrder> getOrders() {
         return orders;
     }
-
-    public void setOrders(List<Order> orders) {
+    public void setItemOrder(List<ItemOrder> orders) {
         this.orders = orders;
     }
 

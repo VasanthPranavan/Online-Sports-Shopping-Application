@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
  * @author Vasanth Pranavan
  */
 @Entity
-public class Appointment extends AbstractNamedEntity {
+public class Appointment extends AbstractIdentifiedEntity {
 
     @ManyToOne
     private Physician physician;

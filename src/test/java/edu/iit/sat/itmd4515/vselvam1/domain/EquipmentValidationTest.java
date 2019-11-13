@@ -30,7 +30,7 @@ public class EquipmentValidationTest extends AbstractValidationTest {
 
         assertEquals(1, constraintViolations.size());
         assertEquals(
-                "must not be blank",
+                "Cannnot be blank. Please enter ",
                 constraintViolations.iterator().next().getMessage()
         );
         //rainy day test case
@@ -46,7 +46,7 @@ public class EquipmentValidationTest extends AbstractValidationTest {
 
         String err = constraintViolations.iterator().next().getMessage();
 //        assertEquals(0, constraintViolations.size());
-        if (err.matches("must not be blank")) {
+        if (err.matches("Cannnot be blank. Please enter ")) {
             assertTrue(true);
         }
 

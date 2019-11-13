@@ -5,6 +5,7 @@
  */
 package edu.iit.sat.itmd4515.vselvam1.domain;
 
+import edu.iit.sat.itmd4515.vselvam1.domain.security.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -20,6 +22,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQuery(name = "ItemOrder.findAll", query = "select o from ItemOrder o")
 @NamedQuery(name="ItemOrder.findByName", query = "select o from ItemOrder o where o.name= :name")
+@NamedQuery(name = "ItemOrder.findByUsername",query="select o from ItemOrder o where o.user.userName= :username")
 public class ItemOrder extends AbstractNamedEntity{
 public ItemOrder() {
     }
@@ -28,6 +31,10 @@ public ItemOrder() {
     joinColumns = @JoinColumn(name = "order_ID"),
             inverseJoinColumns = @JoinColumn(name = "Equipment_ID"))
     private List<Equipment> equipments = new ArrayList<>();
+    
+       @OneToOne
+    @JoinColumn(name="USERNAME")
+    private User user;
     
     public ItemOrder(String name) {
         this.name = name;
@@ -72,6 +79,14 @@ public ItemOrder() {
 @Override
     public String toString() {
         return "ItemOrder{" + "id=" + id + ", name=" + name + '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
 }

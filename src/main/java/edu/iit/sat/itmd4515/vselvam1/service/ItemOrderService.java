@@ -8,6 +8,7 @@ package edu.iit.sat.itmd4515.vselvam1.service;
 import edu.iit.sat.itmd4515.vselvam1.domain.ItemOrder;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,6 +16,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Vasanth Pranavan
  */
+@Named
 @Stateless
 public class ItemOrderService {
 
@@ -42,6 +44,12 @@ public class ItemOrderService {
 
     }
 
+    public ItemOrder findByUsername(String username){
+                return em.createNamedQuery("ItemOrder.findByUsername", ItemOrder.class)
+                        .setParameter("username", username)
+                        .getSingleResult();
+
+    }
     public void update(ItemOrder o) {
         em.merge(o);
     }

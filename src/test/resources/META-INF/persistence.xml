@@ -7,6 +7,8 @@
     <class>edu.iit.sat.itmd4515.vselvam1.domain.Equipment</class>
     <class>edu.iit.sat.itmd4515.vselvam1.domain.Physician</class>
     <class>edu.iit.sat.itmd4515.vselvam1.domain.ItemOrder</class>
+    <class>edu.iit.sat.itmd4515.vselvam1.domain.security.Group</class>
+    <class>edu.iit.sat.itmd4515.vselvam1.domain.security.User</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/itmd4515?zeroDateTimeBehavior=convertToNull&amp;useSSL=false"/>
       <property name="javax.persistence.jdbc.user" value="itmd4515"/>

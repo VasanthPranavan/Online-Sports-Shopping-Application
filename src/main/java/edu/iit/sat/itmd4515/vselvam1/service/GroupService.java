@@ -5,26 +5,25 @@
  */
 package edu.iit.sat.itmd4515.vselvam1.service;
 
-import edu.iit.sat.itmd4515.vselvam1.domain.Equipment;
+import edu.iit.sat.itmd4515.vselvam1.domain.security.Group;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.inject.Named;
 
 /**
  *
  * @author Vasanth Pranavan
  */
-@Named
 @Stateless
-public class EquipmentService extends AbstractService<Equipment> {
+public class GroupService extends AbstractService<Group>{
 
-    public EquipmentService() {
-        super(Equipment.class);
+    public GroupService() {
+        super(Group.class);
     }
 
+    
     @Override
-    public List<Equipment> findAll() {
-        return em.createNamedQuery("Equipment.findAll", entityClass).getResultList();
+    public List<Group> findAll() {
+        return em.createNamedQuery("Group.findAll", Group.class).getResultList();
     }
-
+    
 }

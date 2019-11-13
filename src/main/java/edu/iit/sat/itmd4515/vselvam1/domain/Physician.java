@@ -5,19 +5,26 @@
  */
 package edu.iit.sat.itmd4515.vselvam1.domain;
 
+import edu.iit.sat.itmd4515.vselvam1.domain.security.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Vasanth Pranavan
  */
 @Entity
+@NamedQuery(name = "Physician.findAll", query = "select p from Physician p")
+@NamedQuery(name = "Physician.findByName", query = "select p from Physician p where p.name = :name")
+@NamedQuery(name = "Physician.findByUsername",query="select p from Physician p where p.user.userName= :username")
+
 public class Physician extends AbstractNamedEntity {
 
     @OneToMany(mappedBy = "physician")
@@ -27,6 +34,15 @@ public class Physician extends AbstractNamedEntity {
 //                
     private List<Appointment> appointments = new ArrayList<>();
     private String name;
+
+    @OneToOne
+    @JoinColumn(name="USERNAME")
+    private User user;
+
+    
+    public Physician(String name) {
+    super(name);
+    }
 
     public Physician() {
     }
@@ -55,6 +71,12 @@ public class Physician extends AbstractNamedEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

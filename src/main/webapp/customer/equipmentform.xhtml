@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="../WEB-INF/templates/mainTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">
+        Create a Equipment
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h:panelGroup layout="block" class="form-group">
+
+                <h:outputLabel for="name" value="Name: "/>
+                <h:inputText class="form-control" id="name" value="#{equipmentController.equipment.name}"/>
+            </h:panelGroup>
+            
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="equipType" value="Equipment Type:"/>
+                <h:selectOneMenu class="form-control" id="equipType" 
+                    value="#{equipmentController.equipment.type}">
+                    <f:selectItems value="#{appConfig.allEquipTypes}" 
+                                   var="equipType"
+                                   itemLabel="#{equipType.label}"
+                                   itemValue="#{equipType}">
+                    </f:selectItems>
+                </h:selectOneMenu>
+                <h:message for="petType" errorClass="text-danger"/>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="currentDate" value="Current Date:"/>
+                <h:inputText p:type="date" class="form-control" id="currentDate" value="#{equipmentController.equipment.currentDate}">
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+                </h:inputText>
+                <h:message for="currentDate" errorClass="text-danger"/>
+            </h:panelGroup>
+            
+            <h:panelGroup layout="block" class="form-group">
+
+                <h:outputLabel for="name" value="Price: "/>
+                <h:inputText class="form-control" id="price" value="#{equipmentController.equipment.price}"/>
+            </h:panelGroup>
+            
+            
+            <h:commandButton value="Create a New Equipment" action="#{equipmentController.doSaveEquipment()}"/>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

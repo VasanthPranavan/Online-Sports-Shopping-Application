@@ -4,12 +4,13 @@
                 template="../WEB-INF/templates/mainTemplate.xhtml">
 
     <ui:define name="title">
-        equipment created
+        A equipment has been added !
     </ui:define>
 
     <ui:define name="content">
         #{equipmentController.equipment.id}
         #{equipmentController.equipment.name}
+        #{equipmentController.equipment.price}
     </ui:define>
 
 </ui:composition>

@@ -5,28 +5,39 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Login Form</title>
+        <style>
+            body {
+                margin: auto;
+                width: 30%;
+                border: 3px black;
+                padding: 300px;
+            }</style>
     </h:head>
     <h:body>
-        <h:form >
-          <h:outputLabel for="username" value="Username:"  />
-            <h:inputText 
-                p:autofocus="autofocus"
-                p:placeholder="Username"
-                id="username" 
-                value="#{loginController.username}" />
-            <h:message for="username" />
-            <br/>
-            
-            <h:outputLabel for="password" value="Password:"  />
-            <h:inputSecret 
-                p:placeholder="Password"
-                id="password" 
-                value="#{loginController.password}" />
-            <h:message for="password" />
-            <br/>
+        <h:panelGrid>
+            <h:form >
+                <h3>Login in here using your credentials</h3>
 
-            <h:commandButton value="Login" action="#{loginController.doLogin()}" />
+                <h:outputLabel for="username" value="Username:"  />
+                <h:inputText 
+                    p:autofocus="autofocus"
+                    p:placeholder="Username"
+                    id="username" 
+                    value="#{loginController.username}" />
+                <h:message for="username" />
+                <br/>
+                <br/>
+                <h:outputLabel for="password" value="Password:"  />
+                <h:inputSecret 
+                    p:placeholder="Password"
+                    id="password" 
+                    value="#{loginController.password}" />
+                <h:message for="password" />
+                <br/>
+                <br/>
+                <h:commandButton value="Login" action="#{loginController.doLogin()}" />
             </h:form>
+        </h:panelGrid>
     </h:body>
 </html>
 

@@ -100,4 +100,8 @@ public class Equipment extends AbstractNamedEntity {
         this.orders = orders;
     }
 
+    public void setOrders(List<ItemOrder> orders) {
+        this.orders = orders;
+    }
+
 }

@@ -24,17 +24,19 @@ import javax.persistence.OneToOne;
 @NamedQuery(name="ItemOrder.findByName", query = "select o from ItemOrder o where o.name= :name")
 @NamedQuery(name = "ItemOrder.findByUsername",query="select o from ItemOrder o where o.user.userName= :username")
 public class ItemOrder extends AbstractNamedEntity{
-public ItemOrder() {
-    }
+
     @ManyToMany
     @JoinTable(name = "itemorder_equipment",
     joinColumns = @JoinColumn(name = "order_ID"),
             inverseJoinColumns = @JoinColumn(name = "Equipment_ID"))
     private List<Equipment> equipments = new ArrayList<>();
     
-       @OneToOne
+    @OneToOne
     @JoinColumn(name="USERNAME")
     private User user;
+    
+    public ItemOrder() {
+    }
     
     public ItemOrder(String name) {
         this.name = name;

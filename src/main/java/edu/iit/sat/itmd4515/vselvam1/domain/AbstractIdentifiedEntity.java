@@ -7,6 +7,7 @@ package edu.iit.sat.itmd4515.vselvam1.domain;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,9 +28,9 @@ public class AbstractIdentifiedEntity {
     protected Long id;
     @Version
     protected Long version;
-
+    @Column(updatable = false, insertable = true)
     protected LocalDateTime createdDateTime;
-
+    @Column(updatable = true, insertable = true)
     protected LocalDateTime updatedDateTime;
 
     public AbstractIdentifiedEntity() {

@@ -121,9 +121,11 @@ public class StartupSeedDatabase {
         LOG.info(e3.toString());
 
         o1.addEquipment(e1);
+        o3.addEquipment(e1);
         o2.addEquipment(e2);
         o2.addEquipment(e3);
         o2.addEquipment(e4);
+        o3.addEquipment(e5);
         o3.addEquipment(e5);
                 o3.addEquipment(e6);
 

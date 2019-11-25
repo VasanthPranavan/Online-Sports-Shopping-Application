@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="equipment" required="true" type="edu.iit.sat.itmd4515.vselvam1.domain.Equipment"/>
+        <cc:attribute name="readonly" required="false" default="true" type="java.lang.Boolean"/>
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form>
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="equipmentId" value="Equipment ID #{cc.attrs.equipment.id} v#{cc.attrs.equipment.version}"/>
+                <h:inputHidden class="form-control" id="equipmentId" value="#{cc.attrs.equipment.id}"/>
+                <h:inputHidden class="form-control" id="equipmentVersion" value="#{cc.attrs.equipment.version}"/>
+                <h:message for="equipmentId" errorClass="text-danger"/>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="name" value="Name: "/>
+                <h:inputText 
+                    readonly="#{cc.attrs.readonly ? 'true' : 'false'}"
+                    class="form-control" 
+                    id="name" 
+                    value="#{cc.attrs.equipment.name}"/>
+                <h:message for="name" errorClass="text-danger"/>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="equipType" value="Equipment Type:"/>
+                <h:selectOneMenu 
+                    readonly="#{cc.attrs.readonly ? 'true' : 'false'}"
+                    disabled="#{cc.attrs.readonly ? 'true' : 'false'}"
+
+                    class="form-control"
+                    id="equipType" 
+                    value="#{cc.attrs.equipment.type}">
+                    <f:selectItems value="#{appConfig.allEquipTypes}" 
+                                   var="equipType"
+                                   itemLabel="#{equipType.label}"
+                                   itemValue="#{equipType}">
+                    </f:selectItems>
+                </h:selectOneMenu>
+                <h:message for="petType" errorClass="text-danger"/>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="currentDate" value="Current Date:"/>
+                <h:inputText
+                    readonly="#{cc.attrs.readonly ? 'true' : 'false'}"
+                    p:type="date" 
+                    class="form-control" 
+                    id="currentDate" 
+                    value="#{cc.attrs.equipment.currentDate}">
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+                </h:inputText>
+                <h:message for="currentDate" errorClass="text-danger"/>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="orders" value="Order:"/>
+                <h:selectManyListbox 
+                    converter="customerConverter"
+                    readonly="#{cc.attrs.readonly ? 'true' : 'false'}"
+                    disabled="#{cc.attrs.readonly ? 'true' : 'false'}"
+                    class="form-control"
+                    id="orders"
+                    value="#{cc.attrs.equipment.orders}">
+                    <f:selectItems value="#{itemOrderService.findAll()}"
+                                   var="itemOrder"
+                                   itemLabel="#{itemOrder.name}"
+                                   itemValue="#{itemOrder}"/>
+                </h:selectManyListbox>
+
+            </h:panelGroup>
+
+            <ui:fragment rendered="#{not cc.attrs.readonly}">
+                <h:commandButton 
+                    class="btn btn-lg btn-primary btn-block"
+                    value="Save"
+                    action="#{cc.attrs.action}"/>
+            </ui:fragment>
+
+        </h:form>
+    </cc:implementation>
+</html>

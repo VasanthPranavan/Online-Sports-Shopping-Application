@@ -65,6 +65,9 @@ public class CustomerController {
     }
 
     public String prepareCreateEquipment() {
+        this.equipment=new Equipment();
+        this.equipment.getOrders().add(itemOrder);
+        
         LOG.info("inside Create");
         return "/customer/editEquipment.xhtml";
     }
@@ -72,14 +75,29 @@ public class CustomerController {
      public String prepareDeleteEquipment(Equipment e) {
         this.equipment = e;
         LOG.info("inside Delete with" + equipment.toString());
-        return "/welcome.xhtml";
+        return "customer/deteleEquipment.xhtml";
     }
      
     public String doSaveEquipment() {
-        LOG.info("inside save");
-       equipmentService.update(equipment);
-        return "/customer/welcome.xhtml" ;
+        LOG.info("inside save"+ equipment.toString());
+        
+        if(this.equipment.getId() != null){
+            LOG.info("Executing an update on " + this.equipment.toString());
+            equipmentService.update(equipment);
+        } else {
+            LOG.info("Creating " + this.toString());
+            itemOrder.addEquipment(equipment);
+            equipmentService.createAndAddOrders(equipment);
+        }
+        return "/customer/welcome.xhtml?faces-redirect=true" ;
     }
+    public String doDeleteEquipment() {
+        LOG.info("inside Delete"+ this.toString());
+        equipmentService.delete(equipment);
+       // equipmentService.delete(equipment);
+        return "/customer/welcome.xhtml?faces-redirect=true" ;
+    }
+
 
    
     public ItemOrder getItemorder() {

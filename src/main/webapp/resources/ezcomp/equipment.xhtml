@@ -10,7 +10,10 @@
     <!-- INTERFACE -->
     <cc:interface>
         <cc:attribute name="equipment" required="true" type="edu.iit.sat.itmd4515.vselvam1.domain.Equipment"/>
+        <cc:attribute name="equipmentAction" required="false" default="" type="java.lang.String"/>
         <cc:attribute name="readonly" required="false" default="true" type="java.lang.Boolean"/>
+        <cc:attribute name="buttonValue" required="false" default="Save" type="java.lang.String"/>
+        <cc:attribute name="admin" required="false" default="false" type="java.lang.Boolean"/>
         <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
     </cc:interface>
 
@@ -65,6 +68,7 @@
                 <h:message for="currentDate" errorClass="text-danger"/>
             </h:panelGroup>
 
+            <ui:fragment rendered="#{cc.attrs.readonly or cc.attrs.admin}">
             <h:panelGroup layout="block" class="form-group">
                 <h:outputLabel for="orders" value="Order:"/>
                 <h:selectManyListbox 
@@ -81,11 +85,11 @@
                 </h:selectManyListbox>
 
             </h:panelGroup>
-
-            <ui:fragment rendered="#{not cc.attrs.readonly}">
+</ui:fragment>
+            <ui:fragment rendered="#{not cc.attrs.readonly or cc.attrs.equipmentAction=='delete'}">
                 <h:commandButton 
                     class="btn btn-lg btn-primary btn-block"
-                    value="Save"
+                    value="#{cc.attrs.buttonValue}"
                     action="#{cc.attrs.action}"/>
             </ui:fragment>
 

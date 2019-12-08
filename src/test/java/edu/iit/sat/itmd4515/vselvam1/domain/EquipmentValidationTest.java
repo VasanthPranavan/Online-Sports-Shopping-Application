@@ -17,10 +17,17 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class EquipmentValidationTest extends AbstractValidationTest {
 
+    /**
+     *
+     */
     public EquipmentValidationTest() {
     }
 
     //sunny day test case
+
+    /**
+     *
+     */
     @Test
     public void testNameNullFailure() {
 
@@ -37,6 +44,9 @@ public class EquipmentValidationTest extends AbstractValidationTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void testNameNullFailureFail() {
 

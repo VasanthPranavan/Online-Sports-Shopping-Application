@@ -23,37 +23,72 @@ public class ItemOrderService {
     @PersistenceContext(name = "itmd4515PU")
     private EntityManager em;
 
+    /**
+     *
+     */
     public ItemOrderService() {
     }
 
+    /**
+     *
+     * @param o
+     */
     public void create(ItemOrder o) {
         em.persist(o);
 
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public ItemOrder find(Long id) {
         return em.find(ItemOrder.class, id);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<ItemOrder> findAll() {
         return em.createNamedQuery("ItemOrder.findAll", ItemOrder.class).getResultList();
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     public ItemOrder findByName(String name) {
         return em.createNamedQuery("ItemOrder.findByName", ItemOrder.class).getSingleResult();
 
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public ItemOrder findByUsername(String username){
                 return em.createNamedQuery("ItemOrder.findByUsername", ItemOrder.class)
                         .setParameter("username", username)
                         .getSingleResult();
 
     }
+
+    /**
+     *
+     * @param o
+     */
     public void update(ItemOrder o) {
         em.merge(o);
     }
 
+    /**
+     *
+     * @param o
+     */
     public void delete(ItemOrder o) {
         em.remove(em.merge(o));
     }

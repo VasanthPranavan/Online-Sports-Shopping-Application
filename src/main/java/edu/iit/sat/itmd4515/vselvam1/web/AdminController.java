@@ -27,6 +27,10 @@ public class AdminController {
 
     @EJB
     private EquipmentService equipmentService;
+
+    /**
+     *
+     */
     public AdminController() {
     }
 
@@ -39,20 +43,45 @@ public class AdminController {
     private void postConstruct(){
         equipment= new Equipment();
     }
-    
-     public String prepareUpdateEquipment(Equipment e) {
+
+    /**
+     *
+     * @param e
+     * @return
+     */
+    public String prepareViewEquipment(Equipment e) {
+        this.equipment = e;
+        LOG.info("inside View with" + equipment.toString());
+        return "/admin/viewEquipment.xhtml";
+
+    }
+
+    /**
+     *
+     * @param e
+     * @return
+     */
+    public String prepareUpdateEquipment(Equipment e) {
         this.equipment = e;
         LOG.info("inside prepareUpdateEquipment with" + equipment.toString());
         return "/admin/editEquipment.xhtml";
     }
      
+    /**
+     *
+     * @return
+     */
     public String prepareCreateEquipment() {
         this.equipment=new Equipment();
         LOG.info("inside Create");
         return "/admin/editEquipment.xhtml";
     }
     
-     public String doSaveEquipment() {
+    /**
+     *
+     * @return
+     */
+    public String doSaveEquipment() {
          
         LOG.info("inside save"+ equipment.toString());
         
@@ -67,6 +96,10 @@ public class AdminController {
     
     }
     
+    /**
+     *
+     * @return
+     */
     public Equipment getEquipment() {
         return equipment;
     }

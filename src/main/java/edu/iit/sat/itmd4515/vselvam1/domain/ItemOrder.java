@@ -35,9 +35,16 @@ public class ItemOrder extends AbstractNamedEntity{
     @JoinColumn(name="USERNAME")
     private User user;
     
+    /**
+     *
+     */
     public ItemOrder() {
     }
     
+    /**
+     *
+     * @param name
+     */
     public ItemOrder(String name) {
         this.name = name;
     }
@@ -45,7 +52,7 @@ public class ItemOrder extends AbstractNamedEntity{
     /**
      * Get the value of equip
      *
-     * @return the value of equip
+     * @param e
      */
         public void addEquipment(Equipment e) {
         if (!this.equipments.contains(e)) {
@@ -56,6 +63,10 @@ public class ItemOrder extends AbstractNamedEntity{
         }
     }
 
+    /**
+     *
+     * @param e
+     */
     public void removeEquipment(Equipment e) {
         if (this.equipments.contains(e)) {
             this.equipments.remove(e);
@@ -66,6 +77,11 @@ public class ItemOrder extends AbstractNamedEntity{
 
         }
     }
+
+    /**
+     *
+     * @return
+     */
     public List<Equipment> getEquipments() {
         return equipments;
     }
@@ -73,7 +89,7 @@ public class ItemOrder extends AbstractNamedEntity{
     /**
      * Set the value of equip
      *
-     * @param equip new value of equip
+     * @param equipments
      */
     public void setEquipments(List<Equipment> equipments) {
         this.equipments = equipments;
@@ -83,10 +99,18 @@ public class ItemOrder extends AbstractNamedEntity{
         return "ItemOrder{" + "id=" + id + ", name=" + name + '}';
     }
 
+    /**
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     *
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }

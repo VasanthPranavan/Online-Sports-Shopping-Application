@@ -5,22 +5,24 @@
  */
 package edu.iit.sat.itmd4515.vselvam1.service;
 
-import edu.iit.sat.itmd4515.vselvam1.domain.Physician;
+import edu.iit.sat.itmd4515.vselvam1.domain.Appointment;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 
 /**
  *
  * @author Vasanth Pranavan
  */
+@Named
 @Stateless
-public class PhysicianService extends AbstractService<Physician>{
+public class AppointmentService extends AbstractService<Appointment>{
 
     /**
      *
      */
-    public PhysicianService() {
-        super(Physician.class);
+    public AppointmentService() {
+        super(Appointment.class);
     }
     
     /**
@@ -28,8 +30,8 @@ public class PhysicianService extends AbstractService<Physician>{
      * @return
      */
     @Override
-    public List<Physician> findAll() {
-        return em.createNamedQuery("Physician.findAll",entityClass).getResultList();
+    public List<Appointment> findAll() {
+        return em.createNamedQuery("Appointment.findAll",entityClass).getResultList();
 
     }
 
@@ -38,8 +40,8 @@ public class PhysicianService extends AbstractService<Physician>{
      * @param username
      * @return
      */
-    public Physician findByUsername(String username){
-                return em.createNamedQuery("Physician.findByUsername", Physician.class)
+    public Appointment findByUsername(String username){
+                return em.createNamedQuery("Appointment.findByUsername", Appointment.class)
                         .setParameter("username", username)
                         .getSingleResult();
 

@@ -39,11 +39,17 @@ public class Physician extends AbstractNamedEntity {
     @JoinColumn(name="USERNAME")
     private User user;
 
-    
+    /**
+     *
+     * @param name
+     */
     public Physician(String name) {
     super(name);
     }
 
+    /**
+     *
+     */
     public Physician() {
     }
 
@@ -72,11 +78,20 @@ public class Physician extends AbstractNamedEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    /**
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }
+
+    /**
+     *
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }
-
 }

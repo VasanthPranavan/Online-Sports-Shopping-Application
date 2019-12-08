@@ -20,25 +20,44 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Vasanth Pranavan
  */
 public class AbstractValidationTest {
-        protected static Validator validator;
 
+    /**
+     *
+     */
+    protected static Validator validator;
+
+    /**
+     *
+     */
     public AbstractValidationTest() {
     }
     
+    /**
+     *
+     */
     @BeforeAll
     public static void setUpClass() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
 
+    /**
+     *
+     */
     @AfterAll
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @BeforeEach
     public void setUp() {
     }
 
+    /**
+     *
+     */
     @AfterEach
     public void tearDown() {
     }

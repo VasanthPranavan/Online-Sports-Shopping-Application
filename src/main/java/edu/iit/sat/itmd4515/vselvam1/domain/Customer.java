@@ -17,45 +17,66 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Customer extends AbstractNamedEntity {
-
+   
     @OneToMany(mappedBy = "customer")
-    private List<Appointment> appointments = new ArrayList<>();
+    private List<Appointment> appointments= new ArrayList<>();;
+
+
+
+   
     private LocalDate date;
 
     private Boolean priority;
-
+    
     /**
      * Get the value of appointments
      *
      * @return the value of appointments
      */
-    public List<Appointment> getAppointments() {
-        return appointments;
-    }
-
+    
     /**
      * Set the value of appointments
      *
      * @param appointments new value of appointments
      */
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
-    }
+    
 
+    /**
+     *
+     * @return
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     *
+     * @param date
+     */
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean isPriority() {
         return priority;
     }
 
+    /**
+     *
+     * @param priority
+     */
     public void setPriority(Boolean priority) {
         this.priority = priority;
+    }
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
 }

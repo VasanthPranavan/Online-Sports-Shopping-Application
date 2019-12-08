@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/createUserTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">
+        Welcome to Sparks Online Sports Center 
+    </ui:define>
+
+    <ui:define name="content">
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:messages errorClass="errorMessage" infoClass="infoMessage" style="color: red"
+                    warnClass="warnMessage"></h:messages> 
+
+        <h:form>  
+            <h:panelGrid columns="2" style="margin: 0 auto;">
+
+                <h:outputText value="User Name:"></h:outputText>
+                <h:inputText class="form-control" id="username" value="#{customerDetails.user.userName}" required="true" requiredMessage="Please Enter  User Name!"></h:inputText>
+
+                <h:outputText  value="Password:"></h:outputText>
+                <h:inputSecret class="form-control" id="password"
+                              
+                              value="#{customerDetails.user.password}" required="true" requiredMessage="Please Enter  Password!"></h:inputSecret>            
+                <h:commandButton type="submit" value="Submit"
+                                 action="#{customerDetails.doRegisterUser()}"></h:commandButton>
+                <h:commandButton type="reset" value="Reset"/>
+            </h:panelGrid> 
+        </h:form>
+        <h:form><h:commandLink  value="Back to Home"
+                                action="/login.xhtml"/></h:form>
+    </ui:define>
+
+</ui:composition>

@@ -25,9 +25,19 @@ public class CustomerPojo {
     @Email(message = "Please enter the vaild email ID(Format: XXXX@yyy.com)")
     private String mail;
 
+    /**
+     *
+     */
     public CustomerPojo() {
     }
 
+    /**
+     *
+     * @param fName
+     * @param lName
+     * @param age
+     * @param mail
+     */
     public CustomerPojo(String fName, String lName, Integer age, String mail) {
         this.fName = fName;
         this.lName = lName;
@@ -53,26 +63,50 @@ public class CustomerPojo {
         this.fName = fName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getlName() {
         return lName;
     }
 
+    /**
+     *
+     * @param lName
+     */
     public void setlName(String lName) {
         this.lName = lName;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getAge() {
         return age;
     }
 
+    /**
+     *
+     * @param age
+     */
     public void setAge(Integer age) {
         this.age = age;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMail() {
         return mail;
     }
 
+    /**
+     *
+     * @param mail
+     */
     public void setMail(String mail) {
         this.mail = mail;
     }

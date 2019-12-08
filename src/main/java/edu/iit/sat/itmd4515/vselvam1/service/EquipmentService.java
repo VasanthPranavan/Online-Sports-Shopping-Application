@@ -20,16 +20,26 @@ import javax.inject.Named;
 @Stateless
 public class EquipmentService extends AbstractService<Equipment> {
 
+    /**
+     *
+     */
     public EquipmentService() {
         super(Equipment.class);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Equipment> findAll() {
         return em.createNamedQuery("Equipment.findAll", entityClass).getResultList();
     }
 
-    
+    /**
+     *
+     * @param equipmentFromUserForm
+     */
     public void adminUpdate(Equipment equipmentFromUserForm) {
 
         Equipment equipmentFromDatabase = em.getReference(entityClass, equipmentFromUserForm.getId());
@@ -59,7 +69,10 @@ public class EquipmentService extends AbstractService<Equipment> {
         em.merge(equipmentFromDatabase);
     }
     
-   
+    /**
+     *
+     * @param equipmentFromUserForm
+     */
     public void Update(Equipment equipmentFromUserForm) {
 
         Equipment equipmentFromDatabase = em.getReference(entityClass, equipmentFromUserForm.getId());
@@ -73,11 +86,19 @@ public class EquipmentService extends AbstractService<Equipment> {
         em.merge(equipmentFromDatabase);
     }
 
+    /**
+     *
+     * @param entity
+     */
     @Override
     public void delete(Equipment entity) {
         super.delete(entity); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param equipmentFromUserForm
+     */
     public void createAndAddOrders(Equipment equipmentFromUserForm) {
         List<ItemOrder> itemOrders = new ArrayList<>(equipmentFromUserForm.getOrders());
 

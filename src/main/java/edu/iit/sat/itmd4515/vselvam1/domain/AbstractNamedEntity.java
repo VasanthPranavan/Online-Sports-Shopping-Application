@@ -20,13 +20,23 @@ import javax.validation.constraints.NotBlank;
 @MappedSuperclass
 public class AbstractNamedEntity extends AbstractIdentifiedEntity {
 
+    /**
+     *
+     */
     @NotBlank(message = "Cannnot be blank. Please enter ")
     @Column(length = 512, nullable = false, unique = true)
     protected String name;
 
+    /**
+     *
+     */
     public AbstractNamedEntity() {
     }
 
+    /**
+     *
+     * @param name
+     */
     public AbstractNamedEntity(String name) {
         this.name = name;
     }

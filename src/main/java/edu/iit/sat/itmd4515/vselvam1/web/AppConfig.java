@@ -21,18 +21,34 @@ import javax.inject.Named;
 @ApplicationScoped
 public class AppConfig {
 
+    /**
+     *
+     */
     public AppConfig() {
     }
     
+    /**
+     *
+     * @return
+     */
     public Type[] getAllEquipTypes(){
         return Type.values();
     }
     
+    /**
+     *
+     * @param e
+     * @return
+     */
     public String getOrders(Equipment e){
         List<String> orderName= new ArrayList<>();
         for(ItemOrder o: e.getOrders()){
             orderName.add(o.getName());
         }
     return String.join(",",orderName);
+    }
+    
+    public Type[] getAllPhysicians(){
+        return Type.values();
     }
 }

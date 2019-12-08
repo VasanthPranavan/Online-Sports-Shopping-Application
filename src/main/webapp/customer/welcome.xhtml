@@ -1,20 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../WEB-INF/templates/mainTemplate.xhtml"
+                template="./../WEB-INF/templates/customerWelcomeTemplate.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
-        Welcome Customer #{loginController.remoteUser}
+        Greetings  #{loginController.remoteUser}
     </ui:define>
 
     <ui:define name="content">
-        Welcome Customer #{loginController.remoteUser}
-        <h:form>
-        <h:commandLink value="add new quipment for customer" 
-                       action="#{customerController.prepareCreateEquipment()}"/>
-        </h:form>
+        Welcome  #{loginController.remoteUser}
+        
+            <h:link class="nav-link" outcome="/customer/appointmentForm.xhtml" value="Click here to book an appointment with our best Physicians"/>  
+
         <h:dataTable 
             class="table table-striped table-hover"
             value="#{customerController.itemorder.equipments}"
@@ -56,16 +55,14 @@
             
             <h:column>
                 <h:form>
-                    <h:commandLink value="View  " action="#{customerController.prepareViewEquipment(equipment)}"/>
-                    <h:commandLink value="Update  " action="#{customerController.prepareUpdateEquipment(equipment)}"/>
-                    <h:commandLink value="Delete" action="#{customerController.prepareDeleteEquipment(equipment)}"/>
+                    <h:commandLink value="Buy  " action="#{customerController.prepareViewEquipment(equipment)}"/>
+                    <h:commandLink value="View  " action="#{customerController.prepareUpdateEquipment(equipment)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>
         
         
-        
-        <h:link outcome="equipmentform.xhtml" value="create a new equipment"/>
+      
 
     </ui:define>
 

@@ -10,9 +10,25 @@ package edu.iit.sat.itmd4515.vselvam1.domain;
  * @author Vasanth Pranavan
  */
 public enum Type {
+
+    /**
+     *
+     */
     WEIGHTS("Dumbbells"),
+
+    /**
+     *
+     */
     GYMNASTICS("Skipping Ropes"),
+
+    /**
+     *
+     */
     BALLS("Medicine Ball"),
+
+    /**
+     *
+     */
     ACCESSORIES("Head Band");
 
     private String label;

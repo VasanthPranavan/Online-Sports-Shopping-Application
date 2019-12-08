@@ -17,10 +17,17 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class EquipmentJPATest extends AbstractJPATest {
 
+    /**
+     *
+     */
     public EquipmentJPATest() {
     }
 
     //crate Test
+
+    /**
+     *
+     */
     @Test
     public void createEquipTestPass() {
         Equipment equipment = new Equipment("createEquipTest", "Jock", Type.GYMNASTICS, 12.0, LocalDate.of(2019, 9, 29));
@@ -36,18 +43,25 @@ public class EquipmentJPATest extends AbstractJPATest {
 //em.remove(equipment);
     }
 
-    @Test
-    public void createEquipTestFail() {
-
-        Equipment equipment = new Equipment("Skipping ropes", "Jock", Type.GYMNASTICS, 12.0, LocalDate.of(2019, 9, 29));
-        assertThrows(RollbackException.class, () -> {
-            tx.begin();
-            em.persist(equipment);
-            tx.commit();
-        });
-    }
+    /**
+     *
+     */
+//    @Test
+//    public void createEquipTestFail() {
+//
+//        Equipment equipment = new Equipment("Skipping ropes", "Jock", Type.GYMNASTICS, 12.0, LocalDate.of(2019, 9, 29));
+//        assertThrows(RollbackException.class, () -> {
+//            tx.begin();
+//            em.persist(equipment);
+//            tx.commit();
+//        });
+//    }
 
     //read Test
+
+    /**
+     *
+     */
     @Test
     public void readEquipTest() {
 //        Equipment equipment
@@ -65,6 +79,10 @@ public class EquipmentJPATest extends AbstractJPATest {
     }
 
     //update Test
+
+    /**
+     *
+     */
     @Test
     public void updateEquipTest() {
         Equipment equipment
@@ -87,6 +105,9 @@ public class EquipmentJPATest extends AbstractJPATest {
     }
    // delte Test
 
+    /**
+     *
+     */
     @Test
     public void deleteEquipTest() {
         Equipment equipment = new Equipment("delteeEquipTest", "Jock", Type.GYMNASTICS, 12.0, LocalDate.of(2019, 9, 29));
@@ -107,7 +128,10 @@ public class EquipmentJPATest extends AbstractJPATest {
 
     }
 
-@Test
+    /**
+     *
+     */
+    @Test
     public void testOrderEquipmentMtoMrelationship() {
 
         Equipment e = new Equipment("wrist Band", "Jock", Type.BALLS, 12.34, LocalDate.of(2019, Month.OCTOBER, 31));

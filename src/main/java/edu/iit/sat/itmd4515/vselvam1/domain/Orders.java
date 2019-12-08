@@ -20,6 +20,10 @@ public class Orders  extends AbstractNamedEntity {
 //    @ManyToMany
 //    private List<Equipment> equipments = new ArrayList<>();
 //    
+
+    /**
+     *
+     */
     public Orders() {
         
     }

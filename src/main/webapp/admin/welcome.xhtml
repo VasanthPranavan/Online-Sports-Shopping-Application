@@ -6,13 +6,14 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
-        Welcome Admin #{loginController.remoteUser}
+        Welcome  #{loginController.remoteUser}
     </ui:define>
 
     <ui:define name="content">
-        
+                                    <h:link class="nav-link" outcome="/admin/welcome.xhtml" value="Admin"/>
+
         <h:form>
-        <h:commandLink value="add new quipment for customer" 
+        <h:commandLink value="add new equipment for customer" 
                        action="#{adminController.prepareCreateEquipment()}"/>
         </h:form>
         
@@ -53,9 +54,10 @@
                 <h:outputText value="#{appConfig.getOrders(equipment)}"/>
                 <f:facet name="header"><h:outputText value="Order names"/></f:facet>
             </h:column>
-              <h:column>
+            <h:column>
                 <h:form>
-                    <h:commandLink value="Update  " action="#{adminController.prepareUpdateEquipment(equipment)}"/>
+                    <h:commandLink value="View  " action="#{adminController.prepareViewEquipment(equipment)}"/>
+                    <h:commandLink value="Update  " action="#{adminController.prepareUpdateEquipment(e).prepareUpdateEquipment(equipment)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>

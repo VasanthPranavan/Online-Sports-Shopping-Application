@@ -45,25 +45,48 @@ public class LoginController {
     @Inject
     private ExternalContext externalContext;
 
+    /**
+     *
+     */
     public LoginController() {
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRemoteUser() {
         return externalContext.getRemoteUser();
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAdmin() {
         return securityContext.isCallerInRole("ADMIN_ROLE");
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isPhysician() {
         return securityContext.isCallerInRole("PHYSICIAN_ROLE");
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isCustomer() {
         return securityContext.isCallerInRole("CUSTOMER_ROLE");
     }
 
+    /**
+     *
+     * @return
+     */
     public String doLogout() {
 
         try {
@@ -77,6 +100,10 @@ public class LoginController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String doLogin() {
 
         LOG.info("in doLogin");
@@ -109,18 +136,34 @@ public class LoginController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }

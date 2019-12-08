@@ -5,6 +5,7 @@
  */
 package edu.iit.sat.itmd4515.vselvam1.service;
 
+import edu.iit.sat.itmd4515.vselvam1.domain.Appointment;
 import edu.iit.sat.itmd4515.vselvam1.domain.Equipment;
 import edu.iit.sat.itmd4515.vselvam1.domain.ItemOrder;
 import edu.iit.sat.itmd4515.vselvam1.domain.Physician;
@@ -31,6 +32,11 @@ public class StartupSeedDatabase {
 
     private static final Logger LOG = Logger.getLogger(StartupSeedDatabase.class.getName());
 
+    EntityManager em;
+    
+    @EJB
+    AppointmentService appointmentService;
+    
     @EJB
     EquipmentService equipSvc;
 
@@ -45,7 +51,11 @@ public class StartupSeedDatabase {
 
     @EJB
     GroupService groupSvc;
+    
 
+    /**
+     *
+     */
     public StartupSeedDatabase() {
     }
 
@@ -53,6 +63,9 @@ public class StartupSeedDatabase {
     private void seedDatabase() {
         LOG.info("StartupSeedDatabase  was invoked");
 //security
+
+ 
+       
         User admin = new User("admin", "admin", true);
         Group adminGroup = new Group("ADMIN_GROUP", "This is demo identity store");
         admin.addGroup(adminGroup);
@@ -73,12 +86,21 @@ public class StartupSeedDatabase {
         User customer2 = new User("customer2", "customer2", true);
         customer2.addGroup(customerGroup);
 
+        User customer3 = new User("James", "James", true);
+        customer3.addGroup(customerGroup);
+
+        User customer4 = new User("Justin", "Justin", true);
+        customer4.addGroup(customerGroup);
+
         User physician1 = new User("physician1", "physician1", true);
         physician1.addGroup(physicianGroup);
         physician1.addGroup(customerGroup);
 
         User physician2 = new User("physician2", "physician2", true);
         physician2.addGroup(physicianGroup);
+
+        User physician3 = new User("Dr. Kim", "Kim", true);
+        physician3.addGroup(physicianGroup);
 
         userSvc.create(customer1);
         userSvc.create(customer2);
@@ -87,33 +109,43 @@ public class StartupSeedDatabase {
 
         userSvc.create(physician2);
 
+        userSvc.create(customer3);
+        userSvc.create(customer4);
+        userSvc.create(physician3);
+
 //domain
         ItemOrder o1 = new ItemOrder("Order one");
         o1.setUser(customer1);
         ItemOrder o2 = new ItemOrder("Order two");
         o2.setUser(customer2);
+
         ItemOrder o3 = new ItemOrder("Physician 2 as Customer");
         o3.setUser(physician1);
+        ItemOrder o4 = new ItemOrder("James");
+        o4.setUser(customer3);
+        ItemOrder o5 = new ItemOrder("Justin");
+        o5.setUser(customer4);
+
         Physician p1 = new Physician("Physician one");
         p1.setUser(physician1);
         Physician p2 = new Physician("Physician two");
         p2.setUser(physician2);
+        Physician p3 = new Physician("Dr. Kim");
+        p3.setUser(physician3);
 
-        Equipment e1 = new Equipment("Jock", "John", Type.BALLS, 45.6, LocalDate.of(2019, Month.JANUARY, 31));
+        Equipment e1 = new Equipment("Jock", "John", Type.ACCESSORIES, 45.6, LocalDate.of(2019, Month.JANUARY, 31));
         Equipment e2 = new Equipment("Stretch ropes", "rops", Type.BALLS, 45.6, LocalDate.of(2019, Month.JANUARY, 31));
         Equipment e3 = new Equipment("Bats", "rops", Type.BALLS, 45.6, LocalDate.of(2019, Month.JANUARY, 31));
         Equipment e4 = new Equipment("Nets", "rops", Type.ACCESSORIES, 45.6, LocalDate.of(2019, Month.JANUARY, 31));
         Equipment e5 = new Equipment("Caps", "rops", Type.ACCESSORIES, 45.6, LocalDate.of(2019, Month.JANUARY, 31));
-                Equipment e6 = new Equipment("skins", "strech", Type.ACCESSORIES, 45.6, LocalDate.of(2019, Month.JANUARY, 31));
-
+        Equipment e6 = new Equipment("skins", "strech", Type.ACCESSORIES, 45.6, LocalDate.of(2019, Month.JANUARY, 31));
 
         equipSvc.create(e1);
         equipSvc.create(e2);
         equipSvc.create(e3);
         equipSvc.create(e4);
         equipSvc.create(e5);
-                equipSvc.create(e6);
-
+        equipSvc.create(e6);
 
         //  em.flush();
         LOG.info(e1.toString());
@@ -127,18 +159,30 @@ public class StartupSeedDatabase {
         o2.addEquipment(e4);
         o3.addEquipment(e5);
         o3.addEquipment(e5);
-                o3.addEquipment(e6);
-
+        o3.addEquipment(e6);
+        o4.addEquipment(e1);
+        o5.addEquipment(e2);
 
         itmOrdSvc.create(o1);
         itmOrdSvc.create(o2);
         itmOrdSvc.create(o3);
+        itmOrdSvc.create(o4);
+        itmOrdSvc.create(o5);
 
         phySvc.create(p1);
         phySvc.create(p2);
-
+        phySvc.create(p3);
+        
+//        Appointment ap1= new Appointment("Shoulder Pain", LocalDate.of(2019, Month.JANUARY, 31));
+//        appointmentService.create(ap1);
+        
+//        Appointment ap =new Appointment( "Brief desc", LocalDate.of(2019, Month.JANUARY, 31),"James");
+//       appointmentService.create(ap);
+//       
+             
         System.out.println("PRDERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRr");
 
+        
         LOG.info("Seeded Equipments");
         for (Equipment e : equipSvc.findAll()) {
             LOG.info(e.toString());

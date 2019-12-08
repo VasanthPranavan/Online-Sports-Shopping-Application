@@ -9,14 +9,19 @@
 
     <ui:define name="title">
         Login Page
+
     </ui:define>
 
     <ui:define name="content">
 
-        <h:form class="form-signin">
-            <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"/>
 
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h:form class="form-signin">
+
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img (122).jpg" class="bg-image"
+                 alt="smaple image" width="72" height="72"/>
+            <h1 class="h3 mb-3 font-weight-normal">Welcome to Sparks Sports Center</h1>
+            <h:link class="nav-link" outcome="/createuser.xhtml" value="Click here to signup for an account"/>  
+            <h4 class="h3 mb-3 font-weight-normal">Please sign in</h4>
 
             <h:outputLabel class="sr-only" for="username" value="Username:"  />
             <h:inputText 
@@ -32,7 +37,7 @@
 
             <h:outputLabel class="sr-only" for="password" value="Password:"  />
             <h:inputSecret 
-                
+
                 binding = "#{password}"
                 styleClass="#{password.valid? 'form-control':'form-control is-invalid'}"
                 p:autofocus="autofocus"
@@ -46,7 +51,10 @@
             <h:commandButton  class="btn btn-lg btn-primary btn-block" value="Login" action="#{loginController.doLogin()}" />
             <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 
-        </h:form>
+
+        <h:outputLink target="#" value="/vselvam1-fp/target/site/apidocs/index.html">Final project Docs</h:outputLink>
+
+ </h:form>
 
 
     </ui:define>

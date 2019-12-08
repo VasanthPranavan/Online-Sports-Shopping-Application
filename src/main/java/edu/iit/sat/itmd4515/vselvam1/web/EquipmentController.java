@@ -28,6 +28,9 @@ public class EquipmentController {
 
     private Equipment equipment;
 
+    /**
+     *
+     */
     public EquipmentController() {
     }
 
@@ -37,16 +40,28 @@ public class EquipmentController {
         equipment = new Equipment();
     }
 
+    /**
+     *
+     * @return
+     */
     public String doSaveEquipment() {
         LOG.info("Here in doSaveEquipment " + equipment.toString());
         equipSvc.create(equipment);
         return "equipmentconfirm.xhtml";
     }
 
+    /**
+     *
+     * @return
+     */
     public Equipment getEquipment() {
         return equipment;
     }
 
+    /**
+     *
+     * @param equipment
+     */
     public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
     }

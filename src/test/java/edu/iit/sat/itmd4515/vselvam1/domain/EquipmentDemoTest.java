@@ -27,10 +27,17 @@ public class EquipmentDemoTest extends AbstractJPATest {
     private EntityManager em;
     private EntityTransaction tx;
 
+    /**
+     *
+     */
     public EquipmentDemoTest() {
     }
 
     //@Test
+
+    /**
+     *
+     */
     public void demoTest() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("itmd4515testPU");
         EntityManager em = emf.createEntityManager();

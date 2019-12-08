@@ -39,6 +39,9 @@ public class CustomerController {
     @Inject
     private LoginController loginController;
 
+    /**
+     *
+     */
     public CustomerController() {
     }
 
@@ -51,6 +54,12 @@ public class CustomerController {
     }
 
     //stage 1
+
+    /**
+     *
+     * @param e
+     * @return
+     */
     public String prepareViewEquipment(Equipment e) {
         this.equipment = e;
         LOG.info("inside View with" + equipment.toString());
@@ -58,12 +67,21 @@ public class CustomerController {
 
     }
 
+    /**
+     *
+     * @param e
+     * @return
+     */
     public String prepareUpdateEquipment(Equipment e) {
         this.equipment = e;
         LOG.info("inside Update with" + equipment.toString());
         return "/customer/editEquipment.xhtml";
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareCreateEquipment() {
         this.equipment=new Equipment();
         this.equipment.getOrders().add(itemOrder);
@@ -72,12 +90,21 @@ public class CustomerController {
         return "/customer/editEquipment.xhtml";
     }
     
-     public String prepareDeleteEquipment(Equipment e) {
+    /**
+     *
+     * @param e
+     * @return
+     */
+    public String prepareDeleteEquipment(Equipment e) {
         this.equipment = e;
         LOG.info("inside Delete with" + equipment.toString());
         return "customer/deteleEquipment.xhtml";
     }
      
+    /**
+     *
+     * @return
+     */
     public String doSaveEquipment() {
         LOG.info("inside save"+ equipment.toString());
         
@@ -91,6 +118,11 @@ public class CustomerController {
         }
         return "/customer/welcome.xhtml?faces-redirect=true" ;
     }
+
+    /**
+     *
+     * @return
+     */
     public String doDeleteEquipment() {
         LOG.info("inside Delete"+ this.toString());
         equipmentService.delete(equipment);
@@ -98,21 +130,37 @@ public class CustomerController {
         return "/customer/welcome.xhtml?faces-redirect=true" ;
     }
 
-
-   
+    /**
+     *
+     * @return
+     */
     public ItemOrder getItemorder() {
         return itemOrder;
     }
 
+    /**
+     *
+     * @param itemorder
+     */
     public void setItemorder(ItemOrder itemorder) {
         this.itemOrder = itemorder;
     }
 
+    /**
+     *
+     * @return
+     */
     public Equipment getEquipment() {
         return equipment;
     }
 
+    /**
+     *
+     * @param equipment
+     */
     public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
+        
     }
+    
 }

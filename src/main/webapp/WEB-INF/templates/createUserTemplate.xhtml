@@ -26,45 +26,8 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="#{fn:startsWith(view.viewId, '/welcome') ? 'nav-item active' : 'nav-item'}">
-                        <h:link class="nav-link" outcome="/welcome.xhtml" value="Home"/>
+                        <h:link class="nav-link" outcome="/login.xhtml" value="Home"/>
                     </li>  
-                    <ui:fragment rendered="#{loginController.customer}">
-
-                        <li class="#{fn:startsWith(view.viewId, '/customer') ? 'nav-item active' : 'nav-item'}">
-                            <h:link class="nav-link" outcome="/customer/welcome.xhtml" value="Customer"/>
-                        </li>
-
-                    </ui:fragment>
-                    <ui:fragment rendered="#{loginController.physician}">
-
-                        <li class="#{fn:startsWith(view.viewId, '/physician') ? 'nav-item active' : 'nav-item'}">
-                            <h:link class="nav-link" outcome="/physician/welcome.xhtml" value="Physician"/>
-                        </li>
-                    </ui:fragment>
-
-                    <ui:fragment rendered="#{loginController.admin}">
-
-                        <li class="#{fn:startsWith(view.viewId, '/admin') ? 'nav-item active' : 'nav-item'}">
-                            <h:link class="nav-link" outcome="/admin/welcome.xhtml" value="Admin"/>
-                        </li>
-                    </ui:fragment>
-
-
-                </ul>
-
-
-
-
-                <ul class="navbar-nav mr-sm-2">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Options</a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-                            <h:form>
-                                <h:commandLink class="dropdown-item" value="#{loginController.remoteUser} Logout" action="#{loginController.doLogout}"/>
-                                <a class="dropdown-item" href="#">My Profile</a>
-                            </h:form>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </nav>

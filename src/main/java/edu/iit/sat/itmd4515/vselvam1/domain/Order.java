@@ -27,9 +27,17 @@ public class Order extends AbstractNamedEntity {
 //            joinColumns = @JoinColumn(name = "order_ID"),
 //            inverseJoinColumns = @JoinColumn(name = "Equipment_ID"))
 //    private List<Equipment> equipments = new ArrayList<>();
+
+    /**
+     *
+     */
     public Order() {
     }
 
+    /**
+     *
+     * @param name
+     */
     public Order(String name) {
         this.name = name;
     }

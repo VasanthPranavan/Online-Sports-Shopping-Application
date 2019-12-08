@@ -38,12 +38,20 @@ public class Equipment extends AbstractNamedEntity {
     @ManyToMany(mappedBy = "equipments")
     private List<ItemOrder> orders = new ArrayList<>();
 
-
-    
-    
+    /**
+     *
+     */
     public Equipment() {
     }
 
+    /**
+     *
+     * @param name
+     * @param brand
+     * @param type
+     * @param price
+     * @param currentDate
+     */
     public Equipment(String name, String brand, Type type, Double price, LocalDate currentDate) {
         this.name = name;
         this.brand = brand;
@@ -61,30 +69,58 @@ public class Equipment extends AbstractNamedEntity {
         return brand;
     }
 
+    /**
+     *
+     * @param brand
+     */
     public void setBrand(String brand) {
         this.brand = brand;
     }
 
+    /**
+     *
+     * @return
+     */
     public Type getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(Type type) {
         this.type = type;
     }
 
+    /**
+     *
+     * @return
+     */
     public Double getPrice() {
         return price;
     }
 
+    /**
+     *
+     * @param price
+     */
     public void setPrice(Double price) {
         this.price = price;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDate getCurrentDate() {
         return currentDate;
     }
 
+    /**
+     *
+     * @param currentDate
+     */
     public void setCurrentDate(LocalDate currentDate) {
         this.currentDate = currentDate;
     }
@@ -93,13 +129,27 @@ public class Equipment extends AbstractNamedEntity {
     public String toString() {
         return "Equipment{" + "id=" + id + ", name=" + name + ", brand=" + brand + ", type=" + type + ", price=" + price + ", currentDate=" + currentDate + '}';
     }   
+
+    /**
+     *
+     * @return
+     */
     public List<ItemOrder> getOrders() {
         return orders;
     }
+
+    /**
+     *
+     * @param orders
+     */
     public void setItemOrder(List<ItemOrder> orders) {
         this.orders = orders;
     }
 
+    /**
+     *
+     * @param orders
+     */
     public void setOrders(List<ItemOrder> orders) {
         this.orders = orders;
     }

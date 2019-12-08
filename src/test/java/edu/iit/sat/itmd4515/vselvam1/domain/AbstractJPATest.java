@@ -27,22 +27,42 @@ public abstract class AbstractJPATest {
     private static Validator validator;
 
     private static EntityManagerFactory emf;
+
+    /**
+     *
+     */
     protected EntityManager em;
+
+    /**
+     *
+     */
     protected EntityTransaction tx;
 
+    /**
+     *
+     */
     public AbstractJPATest() {
     }
 
+    /**
+     *
+     */
     @BeforeAll
     public static void setUpClass() {
         emf = Persistence.createEntityManagerFactory("itmd4515testPU");
     }
 
+    /**
+     *
+     */
     @AfterAll
     public static void tearDownClass() {
         emf.close();
     }
 
+    /**
+     *
+     */
     @BeforeEach
     public void setUp() {
         em = emf.createEntityManager();
@@ -55,6 +75,9 @@ public abstract class AbstractJPATest {
         tx.commit();
     }
 
+    /**
+     *
+     */
     @AfterEach
     public void tearDown() {
         Equipment equipment
